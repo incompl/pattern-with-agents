@@ -1,0 +1,135 @@
+{
+  "$schema": "https://schema.takeshape.io/project-schema",
+  "defaultLocale": "en-us",
+  "locales": [
+    "en-us"
+  ],
+  "queries": {},
+  "mutations": {},
+  "shapes": {
+    "Egg": {
+      "id": "kPFQMzZ5B",
+      "name": "Egg",
+      "title": "Egg",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "@mapping": "shapedb:Egg.2KDyANlAD",
+            "type": "string",
+            "title": "Name"
+          }
+        }
+      }
+    }
+  },
+  "workflows": {},
+  "forms": {
+    "Egg": {
+      "default": {
+        "properties": {
+          "name": {
+            "widget": "singleLineText"
+          }
+        },
+        "order": [
+          "name"
+        ]
+      }
+    }
+  },
+  "schemaVersion": "3.55.0",
+  "apiVersion": "2",
+  "services": {
+    "openai": {
+      "id": "openai",
+      "title": "OpenAI",
+      "namespace": "OpenAI",
+      "provider": "openai",
+      "serviceType": "openapi",
+      "authenticationType": "bearer",
+      "options": {
+        "endpoint": "https://api.openai.com/v1/",
+        "spec": "https://raw.githubusercontent.com/takeshape/openapi-specs/813784d8fcac5b3fd4e468ce6f715b89c9fcb73f/specs/openai/v2.yml",
+        "transformVersion": "2.0.0",
+        "introspectedAt": "2025-06-06T01:52:34.779Z"
+      }
+    }
+  },
+  "ai-experimental": {
+    "agents": {
+      "chat": {
+        "api": {
+          "type": "chat",
+          "arguments": []
+        },
+        "memory": {
+          "sessionMemory": {}
+        },
+        "start": {
+          "transition": [
+            {
+              "destination": "IV2XpsZ3k"
+            }
+          ]
+        },
+        "states": {
+          "IV2XpsZ3k": {
+            "name": "chat",
+            "execution": {
+              "type": "chat",
+              "service": "openai",
+              "model": "gpt-4.1-2025-04-14",
+              "input": {
+                "type": "arg"
+              },
+              "systemPrompt": "You are a helpful assistant."
+            },
+            "sessionMemory": [],
+            "transition": [
+              {
+                "destination": "IV2XpsZ3k",
+                "suspend": true,
+                "condition": "currentStateId"
+              }
+            ]
+          }
+        }
+      },
+      "chat2": {
+        "api": {
+          "type": "chat",
+          "arguments": []
+        },
+        "start": {
+          "transition": [
+            {
+              "destination": "FpXoixSvC"
+            }
+          ]
+        },
+        "states": {
+          "FpXoixSvC": {
+            "name": "chat",
+            "execution": {
+              "type": "chat",
+              "service": "openai",
+              "model": "gpt-4.1-2025-04-14",
+              "input": {
+                "type": "arg"
+              },
+              "systemPrompt": "You are a helpful assistant."
+            },
+            "sessionMemory": [],
+            "transition": [
+              {
+                "destination": "FpXoixSvC",
+                "suspend": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
